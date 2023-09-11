@@ -1,11 +1,7 @@
 import './styles.css';
+import getWeatherData from './scripts/app/getWeatherData';
 
-function component() {
-    const element = document.createElement('div');
-  
-    element.innerHTML = 'Hello!'
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+getWeatherData('greenville-sc', 'forecast');
+
+
+
