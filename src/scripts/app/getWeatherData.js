@@ -11,4 +11,4 @@ export default async function getWeatherData(location, apiType) {
     } catch (error) {
         console.log(error);
     }
-}
+};

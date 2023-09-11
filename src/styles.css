@@ -1,3 +1,69 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-bg-color: rgba(0, 0, 0, 0.05);
+    --secondary-bg-color: rgba(0, 0, 0, 0.07);
+    --primary-txt-color: #f1f5f9;
+    --secondary-txt-color: #cbd5e1;
+
+}
+
 body {
-    color: red;
+    height: 100vh;
+    background-image: url(assets/images/blue-sky-background.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--primary-txt-color)
+}
+
+.main-view {
+    height: 80%;
+    width: 80%;
+    padding: 24px 48px;
+    border-radius: 16px;
+    outline: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+    /* justify-conten; */
+    /* background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); */
+}
+
+.search-form {
+    display: flex;
+    background-color: var(--secondary-bg-color);
+    padding: 8px 12px;
+    border-radius: 12px;
+    width: 40%;
+}
+
+.search-form input, .search-form button {
+    outline: none;
+    border: none;
+    background: none;
+    color: var(--primary-txt-color);
+    font-size: 0.8rem;
+}
+
+.search-form input::placeholder {
+    color: var(--secondary-txt-color);
+}
+
+.search-form input {
+    flex-grow: 1;
+}
+
+.search-form button:hover {
+    color: var(--secondary-txt-color);
+    cursor: pointer;
 }

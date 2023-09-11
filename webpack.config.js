@@ -7,7 +7,8 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
   devServer: {
-    static: './dist',
+    port: '3000',
+    static: './dist'
   },
   plugins: [
     new HtmlWebpackPlugin({
