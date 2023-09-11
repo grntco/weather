@@ -3,6 +3,7 @@ export function createSearchForm() {
     form.className = 'search-form';
 
     const input = document.createElement('input');
+    input.className = 'search-input';
     input.placeholder = 'Enter location...';
     const button = document.createElement('button');
     button.type = 'submit';

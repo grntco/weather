@@ -28,15 +28,12 @@ body {
     width: 80%;
     padding: 24px 48px;
     border-radius: 16px;
-    outline: 1px solid blue;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--primary-bg-color);
-    /* justify-conten; */
-    /* background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px); */
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .search-form {
@@ -47,7 +44,7 @@ body {
     width: 40%;
 }
 
-.search-form input, .search-form button {
+.search-input, .search-form button {
     outline: none;
     border: none;
     background: none;
@@ -55,11 +52,11 @@ body {
     font-size: 0.8rem;
 }
 
-.search-form input::placeholder {
+.search-input::placeholder {
     color: var(--secondary-txt-color);
 }
 
-.search-form input {
+.search-input {
     flex-grow: 1;
 }
 
