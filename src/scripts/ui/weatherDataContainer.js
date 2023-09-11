@@ -10,13 +10,13 @@ export function createWeatherDataContainer(data) {
 
         const condition = primaryWeatherContainer.appendChild(document.createElement('div'));
         condition.className = 'condition';
-        condition.textContent = `It's currently 11:00 a.m. and sunny on Monday, September 13.`;
+        condition.textContent = `It's currently ${data.location.localtime} and ${data.current.condition.text.toLowerCase()} on Monday, September 13.`;
 
         // Location
 
         const location = primaryWeatherContainer.appendChild(document.createElement('div'));
         location.className = 'location';
-        location.textContent = `Greenville, SC`;
+        location.textContent = data.location.name;
 
         // Current temperature container with icon and current temperature | maybe not a container
 
@@ -36,7 +36,7 @@ export function createWeatherDataContainer(data) {
         return primaryWeatherContainer;
     }
 
-    function createSecondaryDataContainer() {
+    function createSecondaryDataContainer(data) {
         const secondaryDataContainer = document.createElement('div');
         secondaryDataContainer.className = 'secondary-data-container';
 
@@ -45,7 +45,11 @@ export function createWeatherDataContainer(data) {
         return secondaryDataContainer;
     }
 
-    weatherDataContainer.append(createPrimaryDataContainer(), createSecondaryDataContainer());
+    weatherDataContainer.append(createPrimaryDataContainer(data), createSecondaryDataContainer(data));
 
-    return weatherDataContainer;
+    // return weatherDataContainer;
+    const mainView = document.querySelector('.main-view');
+    mainView.appendChild(weatherDataContainer);
 };
+
+// Maybe separate out initial display of elements, or structuring of elements, and a function that just updates their values (i.e., refreshContent)

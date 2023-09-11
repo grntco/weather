@@ -6,5 +6,5 @@ export default function createMainView() {
     mainView.className = 'main-view';
 
     mainView.appendChild(createSearchForm());
-    mainView.appendChild(createWeatherDataContainer());
+    // mainView.appendChild(createWeatherDataContainer());
 };
