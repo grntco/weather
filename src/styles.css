@@ -5,6 +5,7 @@
 }
 
 :root {
+    --system-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --primary-bg-color: rgba(0, 0, 0, 0.05);
     --secondary-bg-color: rgba(0, 0, 0, 0.07);
     --primary-txt-color: #f1f5f9;
@@ -20,7 +21,8 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    color: var(--primary-txt-color)
+    font-family: var(--system-font);
+    color: var(--primary-txt-color);
 }
 
 .main-view {
@@ -63,4 +65,42 @@ body {
 .search-form button:hover {
     color: var(--secondary-txt-color);
     cursor: pointer;
+}
+
+/* Weather Data Container */
+
+.weather-data-container {
+    height: 100%;
+    width: 100%;
+    /* outline: 1px solid red; */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.primary-data-container, .secondary-data-container {
+    /* outline: 1px solid red; */
+}
+
+.primary-data-container {
+    display: flex;
+    flex-direction: column;    
+}
+
+.primary-data-container .condition {
+    margin-top: 96px;
+}
+
+.primary-data-container .location {
+    font-size: 1.5rem;
+    margin-top: 8px;
+}
+
+.primary-data-container .current-temp {
+    font-size: 6rem;
+    margin-top: -8px;
+}
+
+.primary-data-container .high-low-container {
+    display: flex;
+    gap: 8px;
 }
