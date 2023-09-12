@@ -30,7 +30,7 @@ export function createLocationWidget(data, scale) {
         const text = document.createElement('div');
 
         text.className = 'current-temp';
-        text.textContent = `${Math.round(data.current[scale === 'c' ? "temp_c" : "temp_f"])}`;
+        text.innerHTML = `${Math.round(data.current[scale === 'c' ? "temp_c" : "temp_f"])} <span>°${scale === 'c' ? 'C' : 'F'}</span>`;
 
         return text;
     };
