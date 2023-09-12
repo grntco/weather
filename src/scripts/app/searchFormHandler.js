@@ -1,6 +1,6 @@
 import getWeatherData from "./getWeatherData";
 import { createWidgetGrid } from "../ui/widgets/widgetGrid";
-import { changeBackground } from "../ui/background";
+import { updateBackground } from "../ui/background";
 
 export async function submitQuery() {
     const input = document.querySelector('.search-input');
@@ -10,6 +10,6 @@ export async function submitQuery() {
 
     mainView.removeChild(document.querySelector('.widget-grid'));
     mainView.appendChild(createWidgetGrid(weatherData, 'f'));
-    changeBackground(weatherData);
+    updateBackground(weatherData);
 }
 

@@ -3,7 +3,7 @@ import overcastImage from '../../assets/images/overcast-sky.jpg';
 import sunnySkyImage from '../../assets/images/sunny-sky.jpg';
 import rainySkyImage from '../../assets/images/rainy-sky.jpg';
 
-export function changeBackground(data) {
+export function updateBackground(data) {
     const body = document.body;
     const condition = data.current.condition.text.toLowerCase();
 
