@@ -5,7 +5,7 @@ export default async function getWeatherData(location) {
 
     try {
         const apiMethod = `/forecast.json`;
-        const response = await fetch(`${baseUrl}${apiMethod}?key=${apiKey}&q=${location}&aqi=yes`, {mode:"cors"});
+        const response = await fetch(`${baseUrl}${apiMethod}?key=${apiKey}&q=${location}&days=4&aqi=yes`, {mode:"cors"});
         const data = await response.json();
         console.log(data);
         return data; 
