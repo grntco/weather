@@ -9,5 +9,7 @@ export default async function createMainView() {
     mainView.appendChild(createSearchForm());
     mainView.appendChild(createWidgetGrid(await getWeatherData('Greenville, South Carolina'), 'f'));
 
-    mainView.classList.add('entered');
+    setTimeout(function() {
+        mainView.classList.add('entered');
+    }, 250)
 };
