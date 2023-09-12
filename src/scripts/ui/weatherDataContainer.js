@@ -27,6 +27,10 @@ export function createWeatherDataContainer(data) {
 
         // Current temperature container with icon and current temperature | maybe not a container
 
+        // const icon = primaryWeatherContainer.appendChild(document.createElement('img'));
+        // icon.className = 'current-temp-icon';
+        // icon.src = data.current.condition.icon;
+
         const currentTemp = primaryWeatherContainer.appendChild(document.createElement('div'));
         currentTemp.className = 'current-temp';
         currentTemp.textContent = `${Math.round(data.current.temp_f)}°`;
@@ -53,9 +57,74 @@ export function createWeatherDataContainer(data) {
 
         // a bunch of stuff here like air quality etc...
 
-        for (let i = 0; i < 6; i++) {
-            secondaryDataContainer.appendChild(document.createElement('div'));
+        // for (let i = 0; i < 6; i++) {
+        //     secondaryDataContainer.appendChild(document.createElement('div'));
+        // }
+
+        function createFeelsLikeWidget() {
+            const widget = secondaryDataContainer.appendChild(document.createElement('div'));
+            const title = widget.appendChild(document.createElement('h4'));
+            title.textContent = 'Feels like'
+            const temp = widget.appendChild(document.createElement('div'));
+            temp.textContent = data.current.feelslike_f;
+
+            return widget;
         }
+
+        function createAirQualityWidget() {
+            const widget = secondaryDataContainer.appendChild(document.createElement('div'));
+            const title = widget.appendChild(document.createElement('h4'));
+            title.textContent = 'Air quality index';
+       
+            const aqi = data.forecast.forecastday[0].day.air_quality['us-epa-index'];
+            let aqiCondition = '';
+
+            switch (aqi) {
+                case 1:
+                    aqiCondition = 'Good';
+                    break;
+                case 2:
+                    aqiCondition = 'Moderate';
+                    break;
+                case 3:
+                    aqiCondition = 'Unhealthy for sensitive groups';
+                    break;
+                case 4:
+                    aqiCondition = 'Unhealthy';
+                    break;
+                case 5:
+                    aqiCondition = 'Very Unhealthy';
+                    break;
+                case 6: 
+                    aqiCondition = 'Hazardous';
+                    break;
+                default:
+                    aqiCondition = 'Unable to retrieve data';
+            }
+
+            const aqiReport = widget.appendChild(document.createElement('div'));
+            aqiReport.textContent = `${aqi} – ${aqiCondition}`;
+
+
+            return widget;
+        }
+
+        function createWindWidget() {
+            const widget = secondaryDataContainer.appendChild(document.createElement('div'));
+            const title = widget.appendChild(document.createElement('h4'));
+            title.textContent = 'Wind speed';
+
+            const speed = data.current.wind_mph;
+            const report = widget.appendChild(document.createElement('div'));
+            report.textContent = `${speed} mph`
+
+
+
+
+            return widget;
+        }
+
+        secondaryDataContainer.append(createWindWidget(), createAirQualityWidget(), createFeelsLikeWidget())
 
         return secondaryDataContainer;
     }

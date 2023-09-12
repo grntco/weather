@@ -7,5 +7,5 @@ export default async function createMainView() {
     mainView.className = 'main-view';
 
     mainView.appendChild(createSearchForm());
-    mainView.appendChild(createWeatherDataContainer(await getWeatherData('New York')));
+    mainView.appendChild(createWeatherDataContainer(await getWeatherData('Greenville, South Carolina')));
 };

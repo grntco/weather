@@ -27,7 +27,7 @@ body {
 }
 
 .main-view {
-    height: 80%;
+    height: 60%;
     width: 80%;
     padding: 24px 48px;
     border-radius: 16px;
@@ -73,7 +73,6 @@ body {
 /* Weather Data Container */
 
 .weather-data-container {
-    margin-top: -128px;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -111,7 +110,7 @@ body {
     gap: 12px;
 }
 
-.secondary-data-container div {
+.secondary-data-container > div {
     background-color: var(--secondary-bg-color);
     padding: 8px 12px;
     border-radius: 12px;
@@ -122,4 +121,12 @@ body {
 
 .secondary-data-container div:last-child {
     grid-column: -1 / 2;
+}
+
+.secondary-data-container > div > h4 {
+    font-size: 0.6rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+    color: var(--secondary-txt-color);
 }
