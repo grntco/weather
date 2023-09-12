@@ -2,6 +2,7 @@ import format from "date-fns/format";
 import { createWindWidget } from "./widgets/wind";
 import { createAQIWidget } from "./widgets/aqi";
 import { createFeelsWidget } from "./widgets/feels";
+import { createSunWidget } from "./widgets/sun";
 
 export function createWeatherDataContainer(data, scale) {
     const weatherDataContainer = document.createElement('div');
@@ -58,7 +59,7 @@ export function createWeatherDataContainer(data, scale) {
         const secondaryDataContainer = document.createElement('div');
         secondaryDataContainer.className = 'secondary-data-container';
 
-        secondaryDataContainer.append(createWindWidget(data), createAQIWidget(data), createFeelsWidget(data))
+        secondaryDataContainer.append(createWindWidget(data), createAQIWidget(data), createFeelsWidget(data), createSunWidget(data));
 
         return secondaryDataContainer;
     }
