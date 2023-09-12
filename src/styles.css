@@ -22,6 +22,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 16px;
+    letter-spacing: 0.02rem;
     font-family: var(--system-font);
     color: var(--primary-txt-color);
 }
@@ -72,58 +73,62 @@ body {
 
 /* Weather Data Container */
 
-.weather-data-container {
+.widget-grid {
     height: 100%;
     width: 100%;
-    align-items: center;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 8px;
-}
-
-.primary-data-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.primary-data-container .location {
-    font-size: 1.5rem;
-    margin-top: 8px;
-}
-
-.primary-data-container .current-temp {
-    font-size: 6rem;
-    margin-top: -8px;
-}
-
-.primary-data-container .high-low-container {
-    display: flex;
-    gap: 8px;
-}
-
-.secondary-data-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
-    /* grid-template-columns: repeat(4, 128px); */
-    align-items: center;
-    justify-content: center;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 128px);
+    align-content: center;
+    justify-items: center;
     gap: 12px;
 }
 
-.secondary-data-container > div {
-    background-color: var(--secondary-bg-color);
+.widget-grid > div {
     padding: 8px 12px;
     border-radius: 12px;
-    /* height: calc( width ); */
     height: 128px;
+    width: 128px;
+    background-color: var(--secondary-bg-color);
     box-shadow: var(--shadow);
 }
 
-.secondary-data-container div:last-child {
-    grid-column: -1 / 2;
+.widget-grid .location-widget {
+    grid-column: 1 / 3;
+    grid-row: 1 / 4;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.secondary-data-container > div > h4 {
+.location-widget > h3 {
+    margin-top: 8px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.location-widget .current-temp {
+    margin-top: -8px;
+    font-size: 6rem;
+    position: relative;
+}
+
+.location-widget > .current-temp::after {
+    content: "°";
+    font-size: 3rem;
+    position: absolute;
+    top: 8px;
+}
+
+/* .widget-grid div:last-child {
+    grid-column: -1 / 3;
+} */
+
+.widget-grid h4 {
     font-size: 0.6rem;
     font-weight: 400;
     text-transform: uppercase;

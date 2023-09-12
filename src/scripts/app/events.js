@@ -1,4 +1,3 @@
-import { createWeatherDataContainer } from "../ui/weatherDataContainer";
 import { submitQuery } from "./searchFormHandler";
 
 export const events = document.addEventListener('DOMContentLoaded', function() {

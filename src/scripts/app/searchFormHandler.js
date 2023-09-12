@@ -1,5 +1,5 @@
 import getWeatherData from "./getWeatherData";
-import { createWeatherDataContainer } from "../ui/weatherDataContainer";
+import { createWidgetGrid } from "../ui/widgets/widgetGrid";
 
 export async function submitQuery() {
     const input = document.querySelector('.search-input');
@@ -7,8 +7,6 @@ export async function submitQuery() {
     
     const weatherData = await getWeatherData(location);
 
-    createWeatherDataContainer(weatherData);
-
-
+    createWidgetGrid(weatherData);
 }
 
