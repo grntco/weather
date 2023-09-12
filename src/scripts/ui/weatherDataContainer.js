@@ -1,6 +1,9 @@
 import format from "date-fns/format";
+import { createWindWidget } from "./widgets/wind";
+import { createAQIWidget } from "./widgets/aqi";
+import { createFeelsWidget } from "./widgets/feels";
 
-export function createWeatherDataContainer(data) {
+export function createWeatherDataContainer(data, scale) {
     const weatherDataContainer = document.createElement('div');
     weatherDataContainer.className = 'weather-data-container';
 
@@ -55,76 +58,7 @@ export function createWeatherDataContainer(data) {
         const secondaryDataContainer = document.createElement('div');
         secondaryDataContainer.className = 'secondary-data-container';
 
-        // a bunch of stuff here like air quality etc...
-
-        // for (let i = 0; i < 6; i++) {
-        //     secondaryDataContainer.appendChild(document.createElement('div'));
-        // }
-
-        function createFeelsLikeWidget() {
-            const widget = secondaryDataContainer.appendChild(document.createElement('div'));
-            const title = widget.appendChild(document.createElement('h4'));
-            title.textContent = 'Feels like'
-            const temp = widget.appendChild(document.createElement('div'));
-            temp.textContent = data.current.feelslike_f;
-
-            return widget;
-        }
-
-        function createAirQualityWidget() {
-            const widget = secondaryDataContainer.appendChild(document.createElement('div'));
-            const title = widget.appendChild(document.createElement('h4'));
-            title.textContent = 'Air quality index';
-       
-            const aqi = data.forecast.forecastday[0].day.air_quality['us-epa-index'];
-            let aqiCondition = '';
-
-            switch (aqi) {
-                case 1:
-                    aqiCondition = 'Good';
-                    break;
-                case 2:
-                    aqiCondition = 'Moderate';
-                    break;
-                case 3:
-                    aqiCondition = 'Unhealthy for sensitive groups';
-                    break;
-                case 4:
-                    aqiCondition = 'Unhealthy';
-                    break;
-                case 5:
-                    aqiCondition = 'Very Unhealthy';
-                    break;
-                case 6: 
-                    aqiCondition = 'Hazardous';
-                    break;
-                default:
-                    aqiCondition = 'Unable to retrieve data';
-            }
-
-            const aqiReport = widget.appendChild(document.createElement('div'));
-            aqiReport.textContent = `${aqi} – ${aqiCondition}`;
-
-
-            return widget;
-        }
-
-        function createWindWidget() {
-            const widget = secondaryDataContainer.appendChild(document.createElement('div'));
-            const title = widget.appendChild(document.createElement('h4'));
-            title.textContent = 'Wind speed';
-
-            const speed = data.current.wind_mph;
-            const report = widget.appendChild(document.createElement('div'));
-            report.textContent = `${speed} mph`
-
-
-
-
-            return widget;
-        }
-
-        secondaryDataContainer.append(createWindWidget(), createAirQualityWidget(), createFeelsLikeWidget())
+        secondaryDataContainer.append(createWindWidget(data), createAQIWidget(data), createFeelsWidget(data))
 
         return secondaryDataContainer;
     }
