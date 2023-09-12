@@ -5,7 +5,7 @@ export async function submitQuery() {
     const input = document.querySelector('.search-input');
     const location = input.value.toLowerCase().split(' ').join('-');
     
-    const weatherData = await getWeatherData(location, 'forecast');
+    const weatherData = await getWeatherData(location);
 
     createWeatherDataContainer(weatherData);
 

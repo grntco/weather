@@ -1,3 +1,5 @@
+import format from "date-fns/format";
+
 export function createWeatherDataContainer(data) {
     const weatherDataContainer = document.createElement('div');
     weatherDataContainer.className = 'weather-data-container';
@@ -8,30 +10,39 @@ export function createWeatherDataContainer(data) {
 
         // Time and date and condition (data.location.localtime, then some date-fns function for just the time out of a date obj);
 
-        const condition = primaryWeatherContainer.appendChild(document.createElement('div'));
+        const condition = primaryWeatherContainer.appendChild(document.createElement('p'));
         condition.className = 'condition';
-        condition.textContent = `It's currently ${data.location.localtime} and ${data.current.condition.text.toLowerCase()} on Monday, September 13.`;
+
+        const localTime = format(new Date(data.location.localtime), 'p').toLowerCase();
+        const conditionText = data.current.condition.text.toLowerCase();
+        const date = format(new Date(data.location.localtime), 'EEEE, MMMM d');
+        condition.textContent = `It's currently ${localTime} and ${conditionText} on ${date}.`;
 
         // Location
 
         const location = primaryWeatherContainer.appendChild(document.createElement('div'));
         location.className = 'location';
-        location.textContent = data.location.name;
+        const region = data.location.country !== "United States of America" ? data.location.country : data.location.region;
+        location.textContent = `${data.location.name}, ${region}`;
 
         // Current temperature container with icon and current temperature | maybe not a container
 
         const currentTemp = primaryWeatherContainer.appendChild(document.createElement('div'));
         currentTemp.className = 'current-temp';
-        currentTemp.textContent = `69°`
+        currentTemp.textContent = `${Math.round(data.current.temp_f)}°`;
 
         // H and L container w/ H and L
 
         const highLowContainer = primaryWeatherContainer.appendChild(document.createElement('div'));
         highLowContainer.className = 'high-low-container';
+
         const highTemp = highLowContainer.appendChild(document.createElement('div'));
-        highTemp.textContent = `H: 80°`;
+        const highTempValue = Math.round(data.forecast.forecastday[0].day.maxtemp_f);
+        highTemp.textContent = `H: ${highTempValue}°`;
+
         const lowTemp = highLowContainer.appendChild(document.createElement('div'));
-        lowTemp.textContent = `L: 55°`;
+        const lowTempValue = Math.round(data.forecast.forecastday[0].day.mintemp_f);
+        lowTemp.textContent = `L: ${lowTempValue}°`
         
         return primaryWeatherContainer;
     }
@@ -42,12 +53,16 @@ export function createWeatherDataContainer(data) {
 
         // a bunch of stuff here like air quality etc...
 
+        for (let i = 0; i < 6; i++) {
+            secondaryDataContainer.appendChild(document.createElement('div'));
+        }
+
         return secondaryDataContainer;
     }
 
     weatherDataContainer.append(createPrimaryDataContainer(data), createSecondaryDataContainer(data));
 
-    // return weatherDataContainer;
+    return weatherDataContainer;
     const mainView = document.querySelector('.main-view');
     mainView.appendChild(weatherDataContainer);
 };
