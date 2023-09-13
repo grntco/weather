@@ -18,7 +18,7 @@ export function createWidgetGrid(data, scale) {
         createWindWidget(data, scale),
         createSunWidget(data),
         createPrecipWidget(data),
-        createForecastWidget(data)
+        createForecastWidget(data, scale)
     );
 
     return widgetGrid;
