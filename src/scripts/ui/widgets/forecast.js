@@ -21,7 +21,33 @@ export function createForecastWidget(data, scale) {
     
     function createHourlyContainer() {
         const container = document.createElement('div');
+        const leftArrow = container.appendChild(document.createElement('button'));
+        const carouselFrame = container.appendChild(document.createElement('div'));
+        const rightArrow = container.appendChild(document.createElement('button'));
+
         container.className = 'hourly-container';
+        leftArrow.className = 'left-arrow';
+        carouselFrame.className = 'carousel-frame';
+        rightArrow.className = 'right-arrow';
+
+        for (let i = 0; i < 4; i++) {
+            const carouselItem = carouselFrame.appendChild(document.createElement('div'));
+            carouselItem.className = 'carousel-item';
+
+            for (let j = 0; j < 6; j++) {
+                const hourContainer = carouselItem.appendChild(document.createElement('div'));
+                const hour = hourContainer.appendChild(document.createElement('h5'));
+                // const icon = hourContainer.appendChild(document.createElement('img'));
+                const temp = hourContainer.appendChild(document.createElement('div'));
+
+                hourContainer.className = 'hour-container';
+                hour.className = 'hour';
+                temp.className = 'temp';
+
+                hour.textContent = format(new Date(data.forecast.forecastday[0].hour[j].time), 'ha');
+                temp.textContent = Math.round(data.forecast.forecastday[0].hour[j][scale === 'c' ? "temp_c" : "temp_f"]);
+            }
+        }
 
         return container;
     }
@@ -50,7 +76,7 @@ export function createForecastWidget(data, scale) {
 
     widget.append(
         createHeader(),
-        createDailyContainer()
+        createHourlyContainer()
     );
 
     return widget;
