@@ -1,7 +1,6 @@
 export default async function getWeatherData(location) {
     const baseUrl = 'http://api.weatherapi.com/v1';
     const apiKey = '6b4786fb686f4663bb6125107230809';
-    // const airQualityParam = 'aqi=yes';
 
     try {
         const apiMethod = `/forecast.json`;

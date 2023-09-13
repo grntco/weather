@@ -24,11 +24,12 @@ body {
     letter-spacing: 0.02rem;
     font-family: var(--system-font);
     color: var(--primary-txt-color);
+    transition: background 0.5s ease-in;
 }
 
 .main-view {
     height: 60%;
-    min-width: 80%;
+    min-width: 60%;
     padding: 24px 48px;
     border-radius: 16px;
     display: flex;
@@ -76,6 +77,17 @@ body {
 .search-form button:hover {
     color: var(--secondary-txt-color);
     cursor: pointer;
+}
+
+.search-error {
+    font-size: 0.8rem;
+    height: 0.8rem;
+    margin-top: 8px;
+    display: none;
+}
+
+.search-error.visible {
+    display: block;
 }
 
 /* Weather Data Container */

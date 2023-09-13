@@ -1,12 +1,12 @@
 import { moveToNextSlide, moveToPreviousSlide } from "../ui/widgets/forecast";
-import { submitQuery } from "./searchFormHandler";
+import { handleSearch } from "./handleSearch";
 
 export const events = document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.search-form');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        submitQuery();
+        handleSearch();
     });
 
     document.addEventListener('click', function(e) {
