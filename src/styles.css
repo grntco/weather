@@ -16,7 +16,6 @@
 
 body {
     height: 100vh;
-    background-image: url(assets/images/partly-cloudy-sky.jpg);
     background-size: cover;
     display: flex;
     align-items: center;
