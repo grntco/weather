@@ -24,7 +24,7 @@ body {
     letter-spacing: 0.02rem;
     font-family: var(--system-font);
     color: var(--primary-txt-color);
-    transition: background 0.5s ease-in;
+    transition: background 0.5s ease-in-out;
 }
 
 .main-view {
