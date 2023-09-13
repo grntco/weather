@@ -1,4 +1,7 @@
 import format from "date-fns/format";
+import clockIcon from '../../../assets/icons/clock.svg';
+import chevronLeft from '../../../assets/icons/chevron-left.svg';
+import chevronRight from '../../../assets/icons/chevron-right.svg';
 
 export function createForecastWidget(data, scale) {
     const widget = document.createElement('div');
@@ -6,12 +9,14 @@ export function createForecastWidget(data, scale) {
 
     function createHeader() {
         const header = document.createElement('div');
+        const icon = header.appendChild(document.createElement('img'));
         const title = header.appendChild(document.createElement('h4'));
         const hourlyBtn = header.appendChild(document.createElement('button'));
         const dailyBtn = header.appendChild(document.createElement('button'));
 
-        header.className = 'forecast-header';
+        header.className = 'widget-header';
 
+        icon.src = clockIcon;
         title.textContent = 'Forecast:';
         hourlyBtn.textContent = 'Hourly';
         dailyBtn.textContent = 'Daily';
@@ -21,17 +26,19 @@ export function createForecastWidget(data, scale) {
     
     function createHourlyContainer() {
         const container = document.createElement('div');
-        const leftArrow = container.appendChild(document.createElement('button'));
+        const leftArrowBtn = container.appendChild(document.createElement('button'));
         const carouselFrame = container.appendChild(document.createElement('div'));
-        const rightArrow = container.appendChild(document.createElement('button'));
+        const rightArrowBtn = container.appendChild(document.createElement('button'));
+        const leftArrowIcon = leftArrowBtn.appendChild(document.createElement('img'));
+        const rightArrowIcon = rightArrowBtn.appendChild(document.createElement('img'));
 
         container.className = 'hourly-container';
-        leftArrow.className = 'left-arrow';
+        leftArrowBtn.className = 'left-arrow';
         carouselFrame.className = 'carousel-frame';
-        rightArrow.className = 'right-arrow';
+        rightArrowBtn.className = 'right-arrow';
 
-        leftArrow.textContent = '<';
-        rightArrow.textContent = '>';
+        leftArrowIcon.src = chevronLeft;
+        rightArrowIcon.src = chevronRight;
 
         let hourIndex = 0;
         for (let i = 0; i < 4; i++) {
@@ -92,18 +99,23 @@ export function createForecastWidget(data, scale) {
     return widget;
 }
 
-export function goToNextSlide() {
-    const slides = [ ...document.querySelectorAll('.carousel-item') ];
-    const currentSlide = [ ...document.querySelectorAll('.carousel-item') ].find(item => item.style.opacity === '1');
-    const nextSlide = currentSlide.nextElementSibling || slides[0];
+ function moveToSlide(currentSlide, targetSlide) {
     currentSlide.style.opacity = '0';
-    nextSlide.style.opacity = '1';
+    setTimeout(function() {
+        targetSlide.style.opacity = '1';
+    }, 200)
 }
 
-export function goToPreviousSlide() {
+export function moveToNextSlide() {
+    const slides = [ ...document.querySelectorAll('.carousel-item') ];
+    const currentSlide = slides.find(item => item.style.opacity === '1');
+    const nextSlide = currentSlide.nextElementSibling || slides[0];
+    moveToSlide(currentSlide, nextSlide);
+}
+
+export function moveToPreviousSlide() {
     const slides = [ ...document.querySelectorAll('.carousel-item') ];
     const currentSlide = slides.find(slide => slide.style.opacity === '1');
     const previousSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
-    currentSlide.style.opacity = '0';
-    previousSlide.style.opacity = '1';
+    moveToSlide(currentSlide, previousSlide);
 }

@@ -1,10 +1,17 @@
+import barChartIcon from '../../../assets/icons/bar-chart-2.svg'; 
+
 export function createAQIWidget(data) {
     const widget = document.createElement('div');
-    const title = widget.appendChild(document.createElement('h4'));
-    title.textContent = 'Air quality index (US standard)';
-
+    const header = widget.appendChild(document.createElement('div'));
+    const icon = header.appendChild(document.createElement('img'));
+    const title = header.appendChild(document.createElement('h4'));
     const aqi = data.forecast.forecastday[0].day.air_quality['us-epa-index'];
     let aqiCondition = '';
+
+    header.className = 'widget-header';
+
+    icon.src = barChartIcon;
+    title.textContent = 'Air quality index (US standard)';
 
     switch (aqi) {
         case 1:

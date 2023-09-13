@@ -130,7 +130,22 @@ body {
     top: 8px;
 }
 
-.widget-grid h4 {
+.location-widget .condition {
+    margin-top: 8px;
+}
+
+.widget-grid .widget-header {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.widget-grid .widget-header img {
+    height: 0.8rem;
+    stroke: var(--secondary-txt-color);
+}
+
+.widget-grid .widget-header h4 {
     font-size: 0.6rem;
     font-weight: 400;
     text-transform: uppercase;
@@ -146,28 +161,23 @@ body {
     gap: 4px;
 }
 
-.forecast-widget .forecast-header {
-    display: flex;
-    gap: 4px;
-}
-
-.forecast-widget .forecast-header button {
+.forecast-widget .widget-header button {
+    margin-right: 4px;
     outline: none;
     border: none;
     background: none;
     font-size: 0.6rem;
     text-transform: uppercase;
     color: var(--secondary-txt-color);
-    padding-bottom: 2px;
     transition: border 0.3s ease;
 }
 
-.forecast-widget .forecast-header button:hover {
+.forecast-widget .widget-header button:hover {
     color: var(--primary-txt-color);
     cursor: pointer;
 }
 
-.forecast-widget .forecast-header button:focus {
+.forecast-widget .widget-header button:focus {
     color: var(--primary-txt-color);
     border-bottom: 1.5px solid var(--primary-txt-color);
 }
@@ -207,6 +217,10 @@ body {
     cursor: pointer;
 }
 
+.hourly-container button img {
+    pointer-events: none;
+}
+
 .hourly-container .carousel-frame {
     flex-grow: 1;
     position: relative;
@@ -234,5 +248,7 @@ body {
     padding: 4px 8px;
 }
 
-
+.hour-container h5 {
+    font-weight: 400;
+}
 

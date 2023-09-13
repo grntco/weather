@@ -1,4 +1,4 @@
-import { goToNextSlide, goToPreviousSlide } from "../ui/widgets/forecast";
+import { moveToNextSlide, moveToPreviousSlide } from "../ui/widgets/forecast";
 import { submitQuery } from "./searchFormHandler";
 
 export const events = document.addEventListener('DOMContentLoaded', function() {
@@ -11,10 +11,10 @@ export const events = document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('click', function(e) {
         if (e.target.className === 'left-arrow') {
-            goToPreviousSlide();
+            moveToPreviousSlide();
         }
         if (e.target.className === 'right-arrow') {
-            goToNextSlide();
+            moveToNextSlide();
         }
     });
 });

@@ -4,18 +4,6 @@ export function createLocationWidget(data, scale) {
     const widget = document.createElement('div');
     widget.classList.add('widget', 'location-widget');
 
-    function createConditionText() {
-        const text = document.createElement('p');
-        const time = format(new Date(data.location.localtime), 'p').toLowerCase();
-        const condition = data.current.condition.text.toLowerCase();
-        const date = format(new Date(data.location.localtime), 'EEEE, MMMM d');
-
-        text.className = 'condition';
-        text.textContent = `It's currently ${time} and ${condition} on ${date}.`;
-
-        return text;
-    };
-
     function createLocationText() {
         const text = document.createElement('h3');
         const region = data.location.country !== "United States of America" ? data.location.country : data.location.region;
@@ -45,11 +33,23 @@ export function createLocationWidget(data, scale) {
         return text;
     };
 
+    function createConditionText() {
+        const text = document.createElement('p');
+        const time = format(new Date(data.location.localtime), 'p').toLowerCase();
+        const condition = data.current.condition.text.toLowerCase();
+        const date = format(new Date(data.location.localtime), 'EEEE, MMMM d');
+
+        text.className = 'condition';
+        text.textContent = `It's currently ${time} and ${condition} on ${date}.`;
+
+        return text;
+    };
+
     widget.append(
-        createConditionText(),
         createLocationText(),
         createCurrentTempText(),
-        createHighLowText()
+        createHighLowText(),
+        createConditionText()
     );
     
     return widget;

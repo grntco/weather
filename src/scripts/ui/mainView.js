@@ -1,5 +1,6 @@
 import getWeatherData from "../app/getWeatherData";
 import { createSearchForm }  from "./searchForm";
+import { updateContent } from "./updateContent";
 import { createWidgetGrid } from "./widgets/widgetGrid";
 
 export default async function createMainView() {
@@ -7,7 +8,7 @@ export default async function createMainView() {
     mainView.className = 'main-view';
 
     mainView.appendChild(createSearchForm());
-    mainView.appendChild(createWidgetGrid(await getWeatherData('Greenville, South Carolina'), 'f'));
+    updateContent(await getWeatherData('Greenville, South Carolina'), 'f')
 
     setTimeout(function() {
         mainView.classList.add('entered');
