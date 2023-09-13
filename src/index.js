@@ -6,4 +6,3 @@ import { events } from './scripts/app/events';
 createMainView();
 
 
-

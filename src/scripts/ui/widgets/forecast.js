@@ -30,12 +30,17 @@ export function createForecastWidget(data, scale) {
         carouselFrame.className = 'carousel-frame';
         rightArrow.className = 'right-arrow';
 
+        leftArrow.textContent = '<';
+        rightArrow.textContent = '>';
+
+        let hourIndex = 0;
         for (let i = 0; i < 4; i++) {
             const carouselItem = carouselFrame.appendChild(document.createElement('div'));
             carouselItem.className = 'carousel-item';
 
             for (let j = 0; j < 6; j++) {
                 const hourContainer = carouselItem.appendChild(document.createElement('div'));
+
                 const hour = hourContainer.appendChild(document.createElement('h5'));
                 // const icon = hourContainer.appendChild(document.createElement('img'));
                 const temp = hourContainer.appendChild(document.createElement('div'));
@@ -44,10 +49,14 @@ export function createForecastWidget(data, scale) {
                 hour.className = 'hour';
                 temp.className = 'temp';
 
-                hour.textContent = format(new Date(data.forecast.forecastday[0].hour[j].time), 'ha');
-                temp.textContent = Math.round(data.forecast.forecastday[0].hour[j][scale === 'c' ? "temp_c" : "temp_f"]);
+                hour.textContent = format(new Date(data.forecast.forecastday[0].hour[hourIndex].time), 'ha');
+                temp.textContent = Math.round(data.forecast.forecastday[0].hour[hourIndex][scale === 'c' ? "temp_c" : "temp_f"]) + '°';
+                
+                hourIndex++;
             }
         }
+
+        carouselFrame.firstChild.style.opacity = '1';
 
         return container;
     }
@@ -79,5 +88,22 @@ export function createForecastWidget(data, scale) {
         createHourlyContainer()
     );
 
+
     return widget;
+}
+
+export function goToNextSlide() {
+    const slides = [ ...document.querySelectorAll('.carousel-item') ];
+    const currentSlide = [ ...document.querySelectorAll('.carousel-item') ].find(item => item.style.opacity === '1');
+    const nextSlide = currentSlide.nextElementSibling || slides[0];
+    currentSlide.style.opacity = '0';
+    nextSlide.style.opacity = '1';
+}
+
+export function goToPreviousSlide() {
+    const slides = [ ...document.querySelectorAll('.carousel-item') ];
+    const currentSlide = slides.find(slide => slide.style.opacity === '1');
+    const previousSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
+    currentSlide.style.opacity = '0';
+    previousSlide.style.opacity = '1';
 }
