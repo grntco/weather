@@ -2,8 +2,10 @@ import { updateContent } from "./updateContent";
 import getWeatherData from "../app/getWeatherData";
 
 export function getCurrentScale() {
-    const currentScale = [ ...document.querySelector('.current-temp').firstElementChild.textContent.split('')].pop().toLowerCase();
-    return currentScale;
+    if (!document.querySelector('.search-error').classList.contains('visible')) {
+        const currentScale = [ ...document.querySelector('.current-temp').firstElementChild.textContent.split('')].pop().toLowerCase();
+        return currentScale;
+    }
 }
 
 export function createScaleToggleBtn(scale) {
