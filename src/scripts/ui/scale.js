@@ -9,7 +9,7 @@ export function getCurrentScale() {
 export function createScaleToggleBtn() {
     const btn = document.createElement('button');
     btn.className = 'scale-toggle-btn';
-    btn.textContent = 'F/C';
+    btn.textContent = 'C°';
 
     return btn
 }

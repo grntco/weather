@@ -8,9 +8,12 @@ import { createScaleToggleBtn } from "./scale";
 export default async function createMainView() {
     const mainView = document.body.appendChild(document.createElement('div'));
     mainView.className = 'main-view';
+
+    const header = mainView.appendChild(document.createElement('div'));
+    header.className = 'main-header';
     
-    mainView.appendChild(createSearchForm());
-    mainView.appendChild(createScaleToggleBtn());
+    header.appendChild(createSearchForm());
+    header.appendChild(createScaleToggleBtn());
     mainView.appendChild(createSearchError())
 
     updateContent(await getWeatherData('Greenville, South Carolina'), 'f')
