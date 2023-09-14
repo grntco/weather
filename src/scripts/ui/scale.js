@@ -11,7 +11,7 @@ export function getCurrentScale() {
 export function createScaleToggleBtn(scale) {
     const btn = document.createElement('button');
     btn.className = 'scale-toggle-btn';
-    btn.innerHTML = `<span>C°</span>`;
+    btn.textContent = `C°`;
 
     return btn
 }
@@ -22,7 +22,7 @@ export async function toggleScale() {
     const currentLocation = document.querySelector('.location').textContent;
     const scaleBtn = document.querySelector('.scale-toggle-btn');
 
-    scaleBtn.innerHTML = `<span>${currentScale.toUpperCase()}°</span>`
+    scaleBtn.textContent = `${currentScale.toUpperCase()}°`
     updateContent(await getWeatherData(currentLocation), newScale);
 }
 

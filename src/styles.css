@@ -92,23 +92,16 @@ body {
     border: none;
     background: none;
     color: var(--secondary-txt-color);
-    background-color: var(--secondary-bg-color);
     padding: 8px 12px;
     height: 100%;
+    min-width: 2rem;
     border-radius: 8px;
     position: relative;
-}
-
-.scale-toggle-btn span {
-    position: absolute;
-    top: 8px;
-    left: 6px;
-    pointer-events: none;
+    font-size: 1rem;
 }
 
 .scale-toggle-btn:hover {
     color: var(--primary-txt-color);
-    box-shadow: var(--shadow);
     cursor: pointer;
 }
 
@@ -211,15 +204,24 @@ body {
     top: 2px;
 }
 
-.widget-grid .wind-widget .wind-speed {
+.wind-widget .wind-speed,
+.sun-widget .sun-main-time,
+.precip-widget .percent-report {
     font-size: 2rem;
     position: relative;
 }
 
-.wind-widget .wind-speed span {
+.wind-widget .wind-speed span,
+.sun-widget .sun-main-time span,
+.precip-widget .percent-report span {
     font-size: 0.8rem;
     position: absolute;
     top: 2px;
+}
+
+.sun-widget .descriptive-text, .precip-widget .descriptive-text {
+    font-size: 0.7rem;
+    
 }
 
 .widget-grid .forecast-widget {
