@@ -35,7 +35,7 @@ export function createForecastWidget(data, scale) {
         const leftArrowIcon = leftArrowBtn.appendChild(document.createElement('img'));
         const rightArrowIcon = rightArrowBtn.appendChild(document.createElement('img'));
     
-        container.className = 'hourly-container';
+        container.classList.add('hourly-view', 'active');
         leftArrowBtn.className = 'left-arrow';
         carouselFrame.className = 'carousel-frame';
         rightArrowBtn.className = 'right-arrow';
@@ -73,18 +73,19 @@ export function createForecastWidget(data, scale) {
     
     function createDailyContainer() {
         const container = document.createElement('div');
-        container.className = 'daily-container';
+        container.className = 'daily-view';
     
         for (let i = 1; i < 4; i++) {
-            const gridItem = container.appendChild(document.createElement('div'));
-            const day = gridItem.appendChild(document.createElement('div'));
-            // const icon = gridItem.appendChild(document.createElement('img'));
-            const highLow = gridItem.appendChild(document.createElement('div'));
             const dayData = data.forecast.forecastday[i];
             const hTemp = Math.round(dayData.day[scale === 'c' ? "maxtemp_c" : "maxtemp_f"]);
             const lTemp = Math.round(dayData.day[scale === 'c' ? "mintemp_c" : "mintemp_f"]);
-    
-    
+            const gridItem = container.appendChild(document.createElement('div'));
+            const day = gridItem.appendChild(document.createElement('h5'));
+            const icon = gridItem.appendChild(createIcon(dayData.day.condition.text));
+            const highLow = gridItem.appendChild(document.createElement('div'));
+
+            highLow.className = 'high-low';
+            
             day.textContent = format(new Date(dayData.date), 'iii');
             highLow.textContent = `H: ${hTemp}° L: ${lTemp}°`;
         }
@@ -94,9 +95,9 @@ export function createForecastWidget(data, scale) {
 
     widget.append(
         createHeader(),
-        createHourlyContainer()
+        createHourlyContainer(),
+        createDailyContainer()
     );
-
 
     return widget;
 }
@@ -120,4 +121,28 @@ export function moveToPreviousSlide() {
     const currentSlide = slides.find(slide => slide.style.opacity === '1');
     const previousSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
     moveToSlide(currentSlide, previousSlide);
+}
+
+export function toggleHourlyView() {
+    const hourlyView = document.querySelector('.hourly-view');
+    const dailyView = document.querySelector('.daily-view');
+
+    if (dailyView.classList.contains('active')) {
+        setTimeout(function() {
+            hourlyView.classList.add('active');
+        }, 200)
+        dailyView.classList.remove('active');
+    }
+}
+
+export function toggleDailyView() {
+    const hourlyView = document.querySelector('.hourly-view');
+    const dailyView = document.querySelector('.daily-view');
+
+    if (hourlyView.classList.contains('active')) {
+        setTimeout(function() {
+            dailyView.classList.add('active');
+        }, 200);
+        hourlyView.classList.remove('active');
+    }
 }

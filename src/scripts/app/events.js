@@ -1,5 +1,5 @@
 import { toggleScale } from "../ui/scale";
-import { moveToNextSlide, moveToPreviousSlide } from "../ui/widgets/forecast";
+import { moveToNextSlide, moveToPreviousSlide, toggleDailyView, toggleHourlyView } from "../ui/widgets/forecast";
 import { handleSearch } from "./handleSearch";
 
 export const events = document.addEventListener('DOMContentLoaded', function() {
@@ -20,5 +20,12 @@ export const events = document.addEventListener('DOMContentLoaded', function() {
         if (e.target.className === 'scale-toggle-btn') {
             toggleScale();
         }
+        if (e.target.className === 'hourly-btn') {
+            toggleHourlyView();
+        }
+        if (e.target.className === 'daily-btn') {
+            toggleDailyView();
+        }
+
     });
 });

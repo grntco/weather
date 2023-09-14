@@ -170,6 +170,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    position: relative;
 }
 
 .forecast-widget .widget-header button {
@@ -188,33 +189,65 @@ body {
     cursor: pointer;
 }
 
+/* Going to have to make this a class */
 .forecast-widget .widget-header button:focus {
     color: var(--primary-txt-color);
     border-bottom: 1.5px solid var(--primary-txt-color);
 }
 
-.forecast-widget .daily-container {
-    /* outline: 1px solid blue; */
+.forecast-widget .daily-view.active, .forecast-widget .hourly-view.active {
+    opacity: 1;
+    z-index: 3;
+}
+
+.forecast-widget .daily-view {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 12px;
+    position: absolute;
+    inset: 0;
+    margin: 24px 8px 8px 8px;
+    justify-items: center;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.3s ease-in;
 }
 
-.forecast-widget .daily-container > div {
+.forecast-widget .daily-view > div {
     background-color: var(--primary-bg-color);
     padding: 8px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    /* width: fit-content; */
 }
 
-.forecast-widget .hourly-container {
-    /* outline: 1px solid red; */
+.forecast-widget .daily-view > div h5 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.forecast-widget .daily-view > div .high-low {
+    font-size: 0.8rem;
+}
+
+.forecast-widget .hourly-view {
     flex-grow: 1;
     display: flex;
     align-items: center;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.3s ease-in;
 }
 
-.hourly-container button {
+
+
+.hourly-view button {
     outline: none;
     border: none;
     height: min-content;
@@ -223,16 +256,16 @@ body {
     background: none;
 }
 
-.hourly-container button:hover {
+.hourly-view button:hover {
     color: var(--primary-txt-color);
     cursor: pointer;
 }
 
-.hourly-container button img {
+.hourly-view button img {
     pointer-events: none;
 }
 
-.hourly-container .carousel-frame {
+.hourly-view .carousel-frame {
     flex-grow: 1;
     position: relative;
     display: flex;
@@ -241,7 +274,7 @@ body {
     height: 100%;
 }
 
-.hourly-container .carousel-frame .carousel-item {
+.hourly-view .carousel-frame .carousel-item {
     position: absolute;
     inset: 0;
     display: flex;

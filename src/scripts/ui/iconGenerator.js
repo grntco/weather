@@ -7,6 +7,7 @@ import cloudSnowIcon from '../../assets/icons/cloud-snow.svg';
 
 export function createIcon(condition) {
     let icon = document.createElement('img');
+    condition = condition.toLowerCase();
 
     if (condition.includes('storm') || condition.includes('lightning') || condition.includes('thunder') || condition.includes('thundry')) {
         icon.src = cloudLightningIcon;
