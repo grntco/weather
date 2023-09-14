@@ -87,6 +87,31 @@ body {
     cursor: pointer;
 }
 
+.scale-toggle-btn {
+    outline: none;
+    border: none;
+    background: none;
+    color: var(--secondary-txt-color);
+    background-color: var(--secondary-bg-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+    /* text-align: center; */
+}
+
+.scale-toggle-btn span {
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    pointer-events: none;
+}
+
+.scale-toggle-btn:hover {
+    color: var(--primary-txt-color);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
 .search-error {
     font-size: 0.8rem;
     height: 0.8rem;
@@ -96,23 +121,6 @@ body {
 
 .search-error.visible {
     display: block;
-}
-
-.scale-toggle-btn {
-    outline: none;
-    border: none;
-    background: none;
-    color: var(--secondary-txt-color);
-    background-color: var(--primary-bg-color);
-    padding: 4px 6px;
-    border-radius: 4px;
-    /* text-align: center; */
-}
-
-.scale-toggle-btn:hover {
-    color: var(--primary-txt-color);
-    background-color: var(--secondary-bg-color);
-    cursor: pointer;
 }
 
 /* Weather Data Container */
