@@ -1,15 +1,14 @@
 export function createSearchForm() {
     const form = document.createElement('form');
-    form.className = 'search-form';
+    const input = form.appendChild(document.createElement('input'));
+    const button = form.appendChild(document.createElement('button'));
 
-    const input = document.createElement('input');
+    form.className = 'search-form';
     input.className = 'search-input';
+
     input.placeholder = 'Enter city...';
-    const button = document.createElement('button');
     button.type = 'submit';
     button.textContent = 'Search';
-
-    form.append(input, button);
 
     return form;
 }

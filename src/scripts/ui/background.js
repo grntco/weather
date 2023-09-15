@@ -7,9 +7,6 @@ export function updateBackground(data) {
     const body = document.body;
     const condition = data.current.condition.text.toLowerCase();
 
-    body.style.backgroundImage = 'none';
-    console.log(condition);
-
     if (condition.includes('cloudy') || condition.includes('clouds')) {
         body.style.backgroundImage = `url(${partlyCloudyImage})`;
     } else if (condition.includes('rain') || condition.includes('rainy') || condition.includes('snow')) {

@@ -1,4 +1,3 @@
-import format from "date-fns/format";
 import { createWindWidget } from "./wind";
 import { createAQIWidget } from "./aqi";
 import { createFeelsWidget } from "./feels";

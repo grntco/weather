@@ -8,12 +8,12 @@ export function getCurrentScale() {
     }
 }
 
-export function createScaleToggleBtn(scale) {
+export function createScaleToggleBtn(scale = `C°`) {
     const btn = document.createElement('button');
     btn.className = 'scale-toggle-btn';
-    btn.textContent = `C°`;
+    btn.textContent = scale;
 
-    return btn
+    return btn;
 }
 
 export async function toggleScale() {

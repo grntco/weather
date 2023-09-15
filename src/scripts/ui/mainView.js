@@ -1,24 +1,23 @@
 import getWeatherData from "../app/getWeatherData";
 import { createSearchForm }  from "./searchForm";
 import { updateContent } from "./updateContent";
-import { createWidgetGrid } from "./widgets/widgetGrid";
 import { createSearchError } from "./searchError";
 import { createScaleToggleBtn } from "./scale";
 
-export default async function createMainView() {
+export default async function createMainView(location, scale) {
     const mainView = document.body.appendChild(document.createElement('div'));
-    mainView.className = 'main-view';
-
     const header = mainView.appendChild(document.createElement('div'));
+
+    mainView.className = 'main-view';
     header.className = 'main-header';
     
     header.appendChild(createSearchForm());
     header.appendChild(createScaleToggleBtn());
-    mainView.appendChild(createSearchError())
+    mainView.appendChild(createSearchError());
 
-    updateContent(await getWeatherData('Greenville, South Carolina'), 'f')
+    updateContent(await getWeatherData(location), scale)
 
     setTimeout(function() {
         mainView.classList.add('entered');
-    }, 250)
+    }, 300)
 };

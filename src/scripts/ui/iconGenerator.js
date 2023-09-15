@@ -7,24 +7,6 @@ import cloudSnowIcon from '../../assets/icons/cloud-snow.svg';
 
 export function createIcon(code) {
     let icon = document.createElement('img');
-    // condition = condition.toLowerCase();
-
-    // if (condition.includes('storm') || condition.includes('lightning') || condition.includes('thunder') || condition.includes('thundry')) {
-    //     icon.src = cloudLightningIcon;
-    // } else if (condition.includes('drizzle')) {
-    //     icon.src = cloudDrizzleIcon;
-    // } else if (condition.includes('rain')) {
-    //     icon.src = cloudRainIcon;
-    // } else if (condition.includes('snow')) {
-    //     icon.src = cloudSnowIcon;
-    // } else if (condition.includes('cloud') || (condition.includes('overcast'))) {
-    //     icon.src = cloudIcon;
-    // } else {
-    //     icon.src = sunIcon;
-    // }
-
-// } else if (code === 1066 || (code >= 1114 && code <= 1117) || (code >= 1210 && code <= 1225) || (code >= 1250 && code <= 1258) || (code >= 1279 && code <= 1282)) {
-//     icon.src = cloudSnowIcon;
 
     if (code === 1000) {
         icon.src = sunIcon;

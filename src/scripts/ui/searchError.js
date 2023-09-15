@@ -7,7 +7,7 @@ export function createSearchError() {
 
 export function displaySearchError() {
     const searchError = document.querySelector('.search-error');
-    searchError.textContent = 'Invalid search. Enter a city name.'
+    searchError.textContent = 'Invalid search. Enter a city name.';
     searchError.classList.add('visible');
 }
 
