@@ -6,7 +6,13 @@ import { createIcon } from "../iconGenerator";
 
 export function createForecastWidget(data, scale) {
     const widget = document.createElement('div');
-    widget.classList.add('forecast-widget')
+    widget.classList.add('widget', 'forecast-widget')
+
+    widget.append(
+        createHeader(),
+        createHourlyView(),
+        createDailyView()
+    );
 
     function createHeader() {
         const header = document.createElement('div');
@@ -16,7 +22,7 @@ export function createForecastWidget(data, scale) {
         const dailyBtn = header.appendChild(document.createElement('button'));
 
         header.className = 'widget-header';
-        hourlyBtn.classList.add('hourly-btn', 'active');
+        hourlyBtn.classList.add('hourly-btn', 'active'); //hmmm
         dailyBtn.className = 'daily-btn';
 
         icon.src = clockIcon;
@@ -27,77 +33,74 @@ export function createForecastWidget(data, scale) {
         return header;
     }
 
-    function createHourlyContainer() {
-        const container = document.createElement('div');
-        const leftArrowBtn = container.appendChild(document.createElement('button'));
-        const carouselFrame = container.appendChild(document.createElement('div'));
-        const rightArrowBtn = container.appendChild(document.createElement('button'));
+    function createHourlyView() {
+        const view = document.createElement('div');
+        const leftArrowBtn = view.appendChild(document.createElement('button'));
+        const carouselFrame = view.appendChild(document.createElement('div'));
+        const rightArrowBtn = view.appendChild(document.createElement('button'));
         const leftArrowIcon = leftArrowBtn.appendChild(document.createElement('img'));
         const rightArrowIcon = rightArrowBtn.appendChild(document.createElement('img'));
     
-        container.classList.add('hourly-view', 'active');
+        view.classList.add('hourly-view', 'active');
         leftArrowBtn.className = 'left-arrow';
         carouselFrame.className = 'carousel-frame';
         rightArrowBtn.className = 'right-arrow';
     
         leftArrowIcon.src = chevronLeft;
-        rightArrowIcon.src = chevronRight;
-    
-        let hourIndex = 0;
-        for (let i = 0; i < 4; i++) {
-            const carouselItem = carouselFrame.appendChild(document.createElement('div'));
-            carouselItem.className = 'carousel-item';
-    
-            for (let j = 0; j < 6; j++) {
-                const hourContainer = carouselItem.appendChild(document.createElement('div'));
-    
-                const hour = hourContainer.appendChild(document.createElement('h5'));
-                const icon = hourContainer.appendChild(createIcon(data.forecast.forecastday[0].hour[hourIndex].condition.code));
-                const temp = hourContainer.appendChild(document.createElement('div'));
-    
-                hourContainer.className = 'hour-container';
-                hour.className = 'hour';
-                temp.className = 'temp';
-    
-                hour.textContent = format(new Date(data.forecast.forecastday[0].hour[hourIndex].time), 'ha');
-                temp.textContent = Math.round(data.forecast.forecastday[0].hour[hourIndex][scale === 'c' ? "temp_c" : "temp_f"]) + '°';
-                
-                hourIndex++;
-            }
-        }
-    
+        rightArrowIcon.src = chevronRight; 
+
+        createHourlyCarousel();
         carouselFrame.firstChild.style.opacity = '1';
-    
-        return container;
+
+        function createHourlyCarousel() {
+            let hourIndex = 0;
+            for (let i = 0; i < 4; i++) {
+                const slide = carouselFrame.appendChild(document.createElement('div'));
+                slide.className = 'carousel-slide';
+        
+                for (let j = 0; j < 6; j++) {
+                    const hourItem = slide.appendChild(document.createElement('div'));
+                    const hour = hourItem.appendChild(document.createElement('h5'));
+                    const icon = hourItem.appendChild(createIcon(data.forecast.forecastday[0].hour[hourIndex].condition.code));
+                    const temp = hourItem.appendChild(document.createElement('div'));
+        
+                    hourItem.className = 'hour-item';
+                    hour.className = 'hour';
+                    temp.className = 'temp';
+        
+                    hour.textContent = format(new Date(data.forecast.forecastday[0].hour[hourIndex].time), 'ha');
+                    temp.textContent = Math.round(data.forecast.forecastday[0].hour[hourIndex][scale === 'c' ? "temp_c" : "temp_f"]) + '°';
+                    
+                    hourIndex++;
+                }
+            }
+        };
+        
+        return view;
     }
     
-    function createDailyContainer() {
-        const container = document.createElement('div');
-        container.className = 'daily-view';
+    function createDailyView() {
+        const view = document.createElement('div');
+        view.className = 'daily-view';
     
         for (let i = 1; i < 4; i++) {
             const dayData = data.forecast.forecastday[i];
             const hTemp = Math.round(dayData.day[scale === 'c' ? "maxtemp_c" : "maxtemp_f"]);
             const lTemp = Math.round(dayData.day[scale === 'c' ? "mintemp_c" : "mintemp_f"]);
-            const gridItem = container.appendChild(document.createElement('div'));
-            const day = gridItem.appendChild(document.createElement('h5'));
-            const icon = gridItem.appendChild(createIcon(dayData.day.condition.code));
-            const highLow = gridItem.appendChild(document.createElement('div'));
+
+            const dayItem = view.appendChild(document.createElement('div'));
+            const title = dayItem.appendChild(document.createElement('h5'));
+            const icon = dayItem.appendChild(createIcon(dayData.day.condition.code));
+            const highLow = dayItem.appendChild(document.createElement('div'));
 
             highLow.className = 'high-low';
             
-            day.textContent = format(new Date(dayData.date), 'iii');
+            title.textContent = format(new Date(dayData.date), 'iii');
             highLow.textContent = `H: ${hTemp}° L: ${lTemp}°`;
         }
     
-        return container;
+        return view;
     }
-
-    widget.append(
-        createHeader(),
-        createHourlyContainer(),
-        createDailyContainer()
-    );
 
     return widget;
 }
@@ -110,17 +113,28 @@ export function createForecastWidget(data, scale) {
 }
 
 export function moveToNextSlide() {
-    const slides = [ ...document.querySelectorAll('.carousel-item') ];
+    const slides = [ ...document.querySelectorAll('.carousel-slide') ];
     const currentSlide = slides.find(item => item.style.opacity === '1');
     const nextSlide = currentSlide.nextElementSibling || slides[0];
     moveToSlide(currentSlide, nextSlide);
 }
 
 export function moveToPreviousSlide() {
-    const slides = [ ...document.querySelectorAll('.carousel-item') ];
+    const slides = [ ...document.querySelectorAll('.carousel-slide') ];
     const currentSlide = slides.find(slide => slide.style.opacity === '1');
     const previousSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
     moveToSlide(currentSlide, previousSlide);
+}
+
+function toggleForecastView(currentView, targetView, currentBtn, targetBtn) {
+    if (currentView.classList.contains('active')) {
+        setTimeout(function() {
+            targetView.classList.add('active');
+        }, 200);
+        currentView.classList.remove('active');
+        targetBtn.classList.add('active');
+        currentBtn.classList.remove('active');
+    }
 }
 
 export function toggleHourlyView() {
@@ -129,14 +143,7 @@ export function toggleHourlyView() {
     const hourlyBtn = document.querySelector('.hourly-btn');
     const dailyBtn = document.querySelector('.daily-btn');
 
-    if (dailyView.classList.contains('active')) {
-        setTimeout(function() {
-            hourlyView.classList.add('active');
-        }, 200);
-        dailyView.classList.remove('active');
-        hourlyBtn.classList.add('active');
-        dailyBtn.classList.remove('active');
-    }
+    toggleForecastView(dailyView, hourlyView, dailyBtn, hourlyBtn);
 }
 
 export function toggleDailyView() {
@@ -145,12 +152,5 @@ export function toggleDailyView() {
     const hourlyBtn = document.querySelector('.hourly-btn');
     const dailyBtn = document.querySelector('.daily-btn');
 
-    if (hourlyView.classList.contains('active')) {
-        setTimeout(function() {
-            dailyView.classList.add('active');
-        }, 200);
-        hourlyView.classList.remove('active');
-        dailyBtn.classList.add('active');
-        hourlyBtn.classList.remove('active');
-    }
+    toggleForecastView(hourlyView, dailyView, hourlyBtn, dailyBtn);
 }
