@@ -52,7 +52,7 @@ export function createForecastWidget(data, scale) {
                 const hourContainer = carouselItem.appendChild(document.createElement('div'));
     
                 const hour = hourContainer.appendChild(document.createElement('h5'));
-                const icon = hourContainer.appendChild(createIcon(data.forecast.forecastday[0].hour[hourIndex].condition.text));
+                const icon = hourContainer.appendChild(createIcon(data.forecast.forecastday[0].hour[hourIndex].condition.code));
                 const temp = hourContainer.appendChild(document.createElement('div'));
     
                 hourContainer.className = 'hour-container';
@@ -81,7 +81,7 @@ export function createForecastWidget(data, scale) {
             const lTemp = Math.round(dayData.day[scale === 'c' ? "mintemp_c" : "mintemp_f"]);
             const gridItem = container.appendChild(document.createElement('div'));
             const day = gridItem.appendChild(document.createElement('h5'));
-            const icon = gridItem.appendChild(createIcon(dayData.day.condition.text));
+            const icon = gridItem.appendChild(createIcon(dayData.day.condition.code));
             const highLow = gridItem.appendChild(document.createElement('div'));
 
             highLow.className = 'high-low';
