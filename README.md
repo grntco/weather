@@ -6,4 +6,4 @@ A user can search for a city to see its weather data, including hourly and daily
 
 Design inspired by Apple's weather app.
 
-Live demo: 
+Live demo: https://grntco.github.io/weather/
