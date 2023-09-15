@@ -349,3 +349,52 @@ body {
 
 /* Mobile */
 
+@media screen and (max-width: 955px) {
+
+    .main-view {
+        height: 80%;
+    }
+
+    .widget-grid {
+        grid-template-columns: repeat(3, 128px);
+        grid-template-rows: repeat(4, 128px);
+    }
+
+    .widget-grid .location-widget {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+    }
+
+    .widget-grid .forecast-widget {
+        grid-column: 1 / 4;
+        grid-row: 4 / 5;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .main-view {
+        height: 100%;
+        width: 100%;
+        padding: 24px 0px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .widget-grid {
+        height: auto;
+        grid-template-columns: repeat(2, 164px);
+        grid-template-rows: repeat(6, 164px);
+    }
+
+    .widget-grid .location-widget {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+    }
+
+    .widget-grid .forecast-widget {
+        grid-column: 1 / 3;
+        grid-row: 5 / 6;
+    }
+
+}
+
