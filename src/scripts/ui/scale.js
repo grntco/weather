@@ -17,13 +17,15 @@ export function createScaleToggleBtn(scale) {
 }
 
 export async function toggleScale() {
-    const currentScale = getCurrentScale();
-    const newScale = currentScale === 'c' ? 'f' : 'c';
-    const currentLocation = document.querySelector('.location').textContent;
-    const scaleBtn = document.querySelector('.scale-toggle-btn');
-
-    scaleBtn.textContent = `${currentScale.toUpperCase()}°`
-    updateContent(await getWeatherData(currentLocation), newScale);
+    if (document.querySelector('.widget-grid')) {
+        const currentScale = getCurrentScale();
+        const newScale = currentScale === 'c' ? 'f' : 'c';
+        const currentLocation = document.querySelector('.location').textContent;
+        const scaleBtn = document.querySelector('.scale-toggle-btn');
+    
+        scaleBtn.textContent = `${currentScale.toUpperCase()}°`
+        updateContent(await getWeatherData(currentLocation), newScale);
+    }
 }
 
 

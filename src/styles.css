@@ -194,12 +194,12 @@ body {
     color: var(--secondary-txt-color);
 }
 
-.widget-grid .feels-widget .feels-temp {
+.widget-grid .feels-widget .feels-report {
     font-size: 3rem;
     position: relative;
 }
 
-.feels-widget .feels-temp span {
+.feels-widget .feels-report span {
     font-size: 1.5rem;
     position: absolute;
     top: 2px;
@@ -226,9 +226,8 @@ body {
     top: 2px;
 }
 
-.descriptive-text {
+.description {
     font-size: 0.7rem;
-    
 }
 
 .widget-grid .forecast-widget {
