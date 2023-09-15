@@ -29,7 +29,7 @@ body {
 
 .main-view {
     height: 60%;
-    min-width: 80%;
+    min-width: 65%;
     padding: 24px 48px;
     border-radius: 16px;
     display: flex;
@@ -91,17 +91,17 @@ body {
     outline: none;
     border: none;
     background: none;
-    color: var(--secondary-txt-color);
+    color: var(--primary-txt-color);
     padding: 8px 12px;
     height: 100%;
-    min-width: 2rem;
+    width: 1.4rem;
     border-radius: 8px;
     position: relative;
     font-size: 1rem;
 }
 
 .scale-toggle-btn:hover {
-    color: var(--primary-txt-color);
+    color: var(--secondary-txt-color);
     cursor: pointer;
 }
 
@@ -150,6 +150,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-shadow: var(--shadow);
 }
 
 .location-widget > h3 {
@@ -204,6 +205,11 @@ body {
     top: 2px;
 }
 
+.widget-grid .aqi-widget .widget-header {
+    align-items: start;
+}
+
+.aqi-widget .aqi-report,
 .wind-widget .wind-speed,
 .sun-widget .sun-main-time,
 .precip-widget .percent-report {
@@ -211,6 +217,7 @@ body {
     position: relative;
 }
 
+.aqi-widget .aqi-report span,
 .wind-widget .wind-speed span,
 .sun-widget .sun-main-time span,
 .precip-widget .percent-report span {
@@ -219,7 +226,7 @@ body {
     top: 2px;
 }
 
-.sun-widget .descriptive-text, .precip-widget .descriptive-text {
+.descriptive-text {
     font-size: 0.7rem;
     
 }
@@ -233,6 +240,7 @@ body {
     position: relative;
 }
 
+
 .forecast-widget .widget-header button {
     margin-right: 4px;
     outline: none;
@@ -240,6 +248,7 @@ body {
     background: none;
     font-size: 0.6rem;
     text-transform: uppercase;
+    /* border-bottom: 1.5px solid rgba(0,0,0,0); */
     color: var(--secondary-txt-color);
     transition: border 0.3s ease;
 }
@@ -250,9 +259,10 @@ body {
 }
 
 /* Going to have to make this a class */
-.forecast-widget .widget-header button:focus {
+.forecast-widget .widget-header button.active {
     color: var(--primary-txt-color);
     border-bottom: 1.5px solid var(--primary-txt-color);
+    /* text-decoration: underline; */
 }
 
 .forecast-widget .daily-view.active, .forecast-widget .hourly-view.active {

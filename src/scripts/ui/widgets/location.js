@@ -37,10 +37,11 @@ export function createLocationWidget(data, scale) {
         const text = document.createElement('p');
         const time = format(new Date(data.location.localtime), 'p').toLowerCase();
         const condition = data.current.condition.text.toLowerCase();
+        const code = data.current.condition.code;
         const date = format(new Date(data.location.localtime), 'EEEE, MMMM d');
 
         text.className = 'condition';
-        text.textContent = `It's currently ${time} and ${condition} on ${date}.`;
+        text.textContent = `It's currently ${time} ${code < 1010 ? 'and' : 'with'} ${condition} on ${date}.`;
 
         return text;
     };

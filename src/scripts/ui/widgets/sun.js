@@ -11,7 +11,7 @@ export function createSunWidget(data) {
     const icon = header.appendChild(document.createElement('img'));
     const title = header.appendChild(document.createElement('h4'));
     const time = widget.appendChild(document.createElement('div'));
-    const descriptiveText = widget.appendChild(document.createElement('div'));
+    const descriptiveText = widget.appendChild(document.createElement('p'));
     
     widget.className = 'sun-widget';
     header.className = 'widget-header';

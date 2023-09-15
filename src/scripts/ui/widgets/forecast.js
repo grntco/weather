@@ -16,7 +16,7 @@ export function createForecastWidget(data, scale) {
         const dailyBtn = header.appendChild(document.createElement('button'));
 
         header.className = 'widget-header';
-        hourlyBtn.className = 'hourly-btn';
+        hourlyBtn.classList.add('hourly-btn', 'active');
         dailyBtn.className = 'daily-btn';
 
         icon.src = clockIcon;
@@ -126,23 +126,31 @@ export function moveToPreviousSlide() {
 export function toggleHourlyView() {
     const hourlyView = document.querySelector('.hourly-view');
     const dailyView = document.querySelector('.daily-view');
+    const hourlyBtn = document.querySelector('.hourly-btn');
+    const dailyBtn = document.querySelector('.daily-btn');
 
     if (dailyView.classList.contains('active')) {
         setTimeout(function() {
             hourlyView.classList.add('active');
-        }, 200)
+        }, 200);
         dailyView.classList.remove('active');
+        hourlyBtn.classList.add('active');
+        dailyBtn.classList.remove('active');
     }
 }
 
 export function toggleDailyView() {
     const hourlyView = document.querySelector('.hourly-view');
     const dailyView = document.querySelector('.daily-view');
+    const hourlyBtn = document.querySelector('.hourly-btn');
+    const dailyBtn = document.querySelector('.daily-btn');
 
     if (hourlyView.classList.contains('active')) {
         setTimeout(function() {
             dailyView.classList.add('active');
         }, 200);
         hourlyView.classList.remove('active');
+        dailyBtn.classList.add('active');
+        hourlyBtn.classList.remove('active');
     }
 }
