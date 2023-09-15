@@ -10,7 +10,7 @@ export function createAQIWidget(data) {
     const icon = header.appendChild(document.createElement('img'));
     const title = header.appendChild(document.createElement('h4'));
 
-    widget.className = 'aqi-widget';
+    widget.classList.add('widget', 'aqi-widget');
     header.className = 'widget-header';
     report.className = 'aqi-report';
     description.className = 'description';

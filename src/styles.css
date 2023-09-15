@@ -175,18 +175,17 @@ body {
     margin-top: 8px;
 }
 
-.widget-grid .widget-header {
+.widget .widget-header {
     display: flex;
     align-items: center;
     gap: 2px;
 }
 
-.widget-grid .widget-header img {
+.widget .widget-header img {
     height: 0.8rem;
-    stroke: var(--secondary-txt-color);
 }
 
-.widget-grid .widget-header h4 {
+.widget .widget-header h4 {
     font-size: 0.6rem;
     font-weight: 400;
     text-transform: uppercase;
@@ -194,39 +193,39 @@ body {
     color: var(--secondary-txt-color);
 }
 
-.widget-grid .feels-widget .feels-report {
+.feels-report {
     font-size: 3rem;
     position: relative;
 }
 
-.feels-widget .feels-report span {
+.feels-report span {
     font-size: 1.5rem;
     position: absolute;
     top: 2px;
 }
 
-.widget-grid .aqi-widget .widget-header {
+.aqi-widget .widget-header {
     align-items: start;
 }
 
-.aqi-widget .aqi-report,
-.wind-widget .wind-speed,
-.sun-widget .sun-main-time,
-.precip-widget .percent-report {
+.aqi-report,
+.wind-report,
+.sun-report,
+.precip-report {
     font-size: 2rem;
     position: relative;
 }
 
-.aqi-widget .aqi-report span,
-.wind-widget .wind-speed span,
-.sun-widget .sun-main-time span,
-.precip-widget .percent-report span {
+.aqi-report span,
+.wind-report span,
+.sun-report span,
+.precip-report span {
     font-size: 0.8rem;
     position: absolute;
     top: 2px;
 }
 
-.description {
+.widget .description {
     font-size: 0.7rem;
 }
 

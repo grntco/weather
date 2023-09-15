@@ -9,7 +9,7 @@ export function createFeelsWidget(data, scale) {
     const icon = header.appendChild(document.createElement('img'));
     const title = header.appendChild(document.createElement('h4'));
 
-    widget.className = 'feels-widget';
+    widget.classList.add('widget', 'feels-widget');
     header.className = 'widget-header';
     report.className = 'feels-report'
 
