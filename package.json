@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/grntco/weather/issues"
   },
-  "homepage": "https://github.com/grntco/weather#readme",
+  "homepage": "https://github.com/grntco/weather",
   "devDependencies": {
     "css-loader": "^6.8.1",
     "date-fns": "^2.30.0",
